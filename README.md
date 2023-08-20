@@ -9,12 +9,12 @@ Overpower Script With Library And Script for AnyGame
 
 # First: Get Loadstring
 ```lua
-  loal RayAray = loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeScript1234/RayArayForRoblox.lua/main/GuiLibrary.lua", true))()
+  local RayAray = loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeScript1234/RayArayForRoblox.lua/main/GuiLibrary.lua", true))()
 ```
 
 # Second: Create Library
 ```lua
-  local Library = ui.CreateWindow({
+  local Library = RayAray.CreateWindow({
   	Blur = true,
   	Notify = true, -- u can change blur and notify to true or false whatever you want
   	Bind = Enum.KeyCode.V, -- you can change V to any key
