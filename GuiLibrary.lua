@@ -52,7 +52,59 @@ local Library = {}
 			end
 		end)
     end
+	local array = Instance.new("Frame")
+	array.Name = "arraylist"
+	array.Parent = game.CoreGui
+	array.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	array.BackgroundTransparency = 1.000
+	array.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	array.BorderSizePixel = 0
+	array.Position = UDim2.new(0.568, 0,0, 0)
+	array.Size = UDim2.new(0.431, 0,0.921, 0)
+	MakeDraggable(array)
+
+	local Layout = Instance.new("UIListLayout")
+	Layout.Parent = array
+	Layout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+	Layout.SortOrder = Enum.SortOrder.LayoutOrder
+	Layout.Padding = UDim.new(0, 0)
+	function Library.add(name)
+		local TextLabel = Instance.new("TextLabel")
+		TextLabel.Parent = array
+		TextLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+		TextLabel.BackgroundTransparency = 0.200
+		TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.BorderSizePixel = 0
+		TextLabel.Position = UDim2.new(0.629090905, 0, 0, 0)
+		TextLabel.Size = UDim2.new(0, 102, 0, 21)
+		TextLabel.Font = Enum.Font.GothamMedium
+		TextLabel.Text = name
+		TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.TextSize = 22.000
+		TextLabel.TextXAlignment = Enum.TextXAlignment.Right
+		
+		local UIGradient = Instance.new("UIGradient")
+		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 106, 0)), ColorSequenceKeypoint.new(0.31, Color3.fromRGB(255, 109, 0)), ColorSequenceKeypoint.new(0.69, Color3.fromRGB(255, 220, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 234, 0))}
+		UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.20), NumberSequenceKeypoint.new(1.00, 0.20)}
+		UIGradient.Parent = TextLabel
+	
+		local textSize = TextLabel.TextBounds
+		TextLabel.Size = UDim2.new(0, textSize.X, 0, 23)
+	
+		TextLabel.LayoutOrder = -textSize.X
+	end
+	function Library.remove(text)
+		local labels = array:GetChildren()
+		for _, label in ipairs(labels) do
+			if label:IsA("TextLabel") and label.Text == text then
+				label:Destroy()
+				break
+			end
+		end
+	end
+
 	function Library.CreateWindow(args)
+		local NotificationEnabled = args.Notify
 		local RayAray = Instance.new("ScreenGui")
 		RayAray.Name = "RayAray"
 		RayAray.Parent = game.CoreGui
@@ -76,22 +128,109 @@ local Library = {}
 		BlurEffect.BackgroundTransparency = 0.700
 		BlurEffect.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		BlurEffect.BorderSizePixel = 0
-		BlurEffect.Position = UDim2.new(-2.82236838, 0, -0.858439207, 0)
-		BlurEffect.Size = UDim2.new(0, 2630, 0, 1812)
+		BlurEffect.Position = UDim2.new(0, -1139,0, -477)
+		BlurEffect.Size = UDim2.new(0, 3630, 0, 2812)
+
+		if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UIS:GetPlatform()) then
+			local MobileBind = Instance.new("Frame")
+			local TextButton = Instance.new("TextButton")
+			local UICorner = Instance.new("UICorner")
+			local TextButton_2 = Instance.new("TextButton")
+			local UICorner_2 = Instance.new("UICorner")
+			local UICorner_3 = Instance.new("UICorner")
+	
+			MobileBind.Name = "MobileBind"
+			MobileBind.Parent = game.CoreGui.RobloxGui
+			MobileBind.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+			MobileBind.BackgroundTransparency = 0.500
+			MobileBind.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			MobileBind.BorderSizePixel = 0
+			MobileBind.Position = UDim2.new(0.420408159, 0, 0.0329411775, 0)
+			MobileBind.Size = UDim2.new(0.120408162, 0, 0.0599999987, 0)
+	
+			TextButton.Parent = MobileBind
+			TextButton.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+			TextButton.BackgroundTransparency = 0.500
+			TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton.BorderSizePixel = 0
+			TextButton.Position = UDim2.new(0.0756972134, 0, 0, 0)
+			TextButton.Size = UDim2.new(0.288135588, 0, 1, 0)
+			TextButton.Font = Enum.Font.GothamMedium
+			TextButton.Text = "X"
+			TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton.TextScaled = true
+			TextButton.TextSize = 14.000
+			TextButton.TextWrapped = true
+			TextButton.MouseButton1Down:Connect(function()
+				BindAble = false
+				RayAray:Destroy()
+				MobileBind:Destroy()
+				Notification.Send("RayAray Library", "SelfDestructed!", 3)
+			end)
+	
+			UICorner.Parent = TextButton
+	
+			TextButton_2.Parent = MobileBind
+			TextButton_2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+			TextButton_2.BackgroundTransparency = 0.500
+			TextButton_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton_2.BorderSizePixel = 0
+			TextButton_2.Position = UDim2.new(0.612420559, 0, 0, 0)
+			TextButton_2.Size = UDim2.new(0.288135588, 0, 1, 0)
+			TextButton_2.Font = Enum.Font.GothamMedium
+			TextButton_2.Text = "Ray"
+			TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextButton_2.TextScaled = true
+			TextButton_2.TextSize = 14.000
+			TextButton_2.TextWrapped = true
+			TextButton_2.MouseButton1Down:Connect(function()
+				if Main.Visible then
+					Main.Visible = false
+				else
+					Main.Visible = true
+				end
+			end)
+	
+			UICorner_2.Parent = TextButton_2
+	
+			UICorner_3.Parent = MobileBind
+		end
 
 		local TabF = Instance.new("Folder")
 		TabF.Name = "Tab"
 		TabF.Parent = Main
+
+		UIS.InputBegan:Connect(function(input)
+			if input.KeyCode == args.Bind then
+				if Main.Visible then
+					Main.Visible = false
+				else
+					Main.Visible = true
+				end
+			end 
+		end)
+		UIS.InputBegan:Connect(function(input)
+			if input.KeyCode == args.SelfDestruct then
+				BindAble = false
+				RayAray:Destroy()
+				MobileBind:Destroy()
+				Notification.Send("RayAray Library", "SelfDestructed!", 3)
+			end
+		end)
 		local Tabs = {}
 			function Tabs.CreateTab(args)
-				local Tab = Instance.new("Frame")
-				Tab.Name = args.Name
+				local Tab = Instance.new("TextButton")
+				Tab.Name = "Tab"
 				Tab.Parent = TabF
 				Tab.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
 				Tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Tab.BorderSizePixel = 0
-				Tab.Position = UDim2.new(-1.29139137, 0, -0.252209783, 0)
-				Tab.Size = UDim2.new(0.407894731, 0, 0.0544464625, 0)
+				Tab.Position = UDim2.new(-1.27765846, 0, -0.255898356, 0)
+				Tab.Size = UDim2.new(0.407999992, 0, 0.0540000014, 0)
+				Tab.Font = Enum.Font.SourceSans
+				Tab.TextColor3 = Color3.fromRGB(0, 0, 0)
+				Tab.TextSize = 14.000
+				Tab.TextTransparency = 1.000
 				MakeDraggable(Tab)
 
 				local TabName = Instance.new("TextLabel")
@@ -118,7 +257,13 @@ local Library = {}
 					sectionInners.BorderSizePixel = 0
 					sectionInners.Position = UDim2.new(0, 0, 1, 0)
 					sectionInners.Size = UDim2.new(1, 0, 0.333333343, 0)
-					
+					Tab.MouseButton2Click:Connect(function()
+						if sectionInners.Visible then
+							sectionInners.Visible = false
+						else
+							sectionInners.Visible = true
+						end
+					end)
 					local MobileInnerOpener = Instance.new("TextButton")
 					MobileInnerOpener.Name = "InnerOpener"
 					MobileInnerOpener.Parent = Tab
@@ -145,6 +290,7 @@ local Library = {}
 					UIListLayout.Parent = sectionInners
 					UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 					local Elements = {}
+					
 					function Elements.CreateButton(args)
 						local changeEnabled = false
 						local TextLabel = Bbind
@@ -237,11 +383,19 @@ local Library = {}
 								pcall(callback, toggled)
 								wait(0.1)
 								tween:Create(Toggle, Togtweenfunc, {BackgroundColor3 = TogOldColor}):Play()
+								Library.remove(tname)
+								if NotificationEnabled then
+									Notification.Disable(tname.. " Has Been Disabled", 2)
+								end
 							else
 								toggled = true
 								pcall(callback, toggled)
 								wait(0.1)
 								tween:Create(Toggle, Togtweenfunc, {BackgroundColor3 = TogNewColor}):Play()
+								Library.add(tname)
+								if NotificationEnabled then
+									Notification.Enable(tname.. " Has Been Enabled", 2)
+								end
 							end
 						end)
 
@@ -278,11 +432,19 @@ local Library = {}
 												pcall(callback, toggled)
 												wait(0.05)
 												tween:Create(Toggle, Togtweenfunc, {BackgroundColor3 = TogOldColor}):Play()
+												Library.remove(tname)
+												if NotificationEnabled then
+													Notification.Disable(tname.. " Has Been Disabled", 2)
+												end
 											else
 												toggled = true
 												pcall(callback, toggled)
 												wait(0.05)
 												tween:Create(Toggle, Togtweenfunc, {BackgroundColor3 = TogNewColor}):Play()
+												Library.add(tname)
+												if NotificationEnabled then
+													Notification.Enable(tname.. " Has Been Enabled", 2)
+												end
 											end
 										end
 									end
@@ -296,11 +458,19 @@ local Library = {}
 								pcall(callback, toggled)
 								wait(0.2)
 								tween:Create(Toggle, Togtweenfunc, {BackgroundColor3 = TogOldColor}):Play()
+								Library.remove(tname)
+								if NotificationEnabled then
+									Notification.Disable(tname.. " Has Been Disabled", 2)
+								end
 							else
 								toggled = true
 								pcall(callback, toggled)
 								wait(0.2)
 								tween:Create(Toggle, Togtweenfunc, {BackgroundColor3 = TogNewColor}):Play()
+								Library.add(tname)
+								if NotificationEnabled then
+									Notification.Enable(tname.. " Has Been Enabled", 2)
+								end
 							end
 						end
 					end
@@ -396,4 +566,7 @@ local Library = {}
 			end
 		return Tabs
 	end
+	task.spawn(function()
+		Notification.Send("RayAray", "Library Has Been Loaded", 5)
+	end)
 return Library
