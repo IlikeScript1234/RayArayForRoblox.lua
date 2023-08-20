@@ -34,21 +34,21 @@ Overpower Script With Library And Script for AnyGame
 
 # Toggle
 ```lua
-  local Toggle = Section.CreateToggle({
-  	Name = "NameHere",
-  	Function = function(callback)
-  		if callback then
-          print("kys pls bro")
-        else
-          print("still kys")
-      end
-  	end	
-  })
+local Toggle = Section.CreateToggle({
+	Name = "NameHere",
+	Function = function(callback)
+	if callback then
+		print("kys pls bro")
+	else
+		print("still kys")
+		end
+	end	
+})
 ```
 
 # Button
 ```lua
-  local Button = Section.CreateToggle({
+local Button = Section.CreateButton({
 	Name = "NameHere",
 	Function = function()
 		print("kys2")
@@ -57,7 +57,7 @@ Overpower Script With Library And Script for AnyGame
 ```
 # Slider
 ```lua
-local Button = Section.CreateToggle({
+local Button = Section.CreateSlider({
     Name = "NameHere",
     Min = 1,
     Max = 20,
