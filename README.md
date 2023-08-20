@@ -57,14 +57,14 @@ Overpower Script With Library And Script for AnyGame
 ```
 # Slider
 ```lua
-  local Button = Section.CreateToggle({
-	Name = "NameHere",
-  Min = 1,
-  Max = 20,
-	Function = function(val)
-		print(val)
-	end,
-  Default = 5
+local Button = Section.CreateToggle({
+    Name = "NameHere",
+    Min = 1,
+    Max = 20,
+    Function = function(val)
+        print(val)
+    end,
+    Default = 5
 })
 ```
 
