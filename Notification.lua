@@ -1,4 +1,5 @@
--- \\atleast credits if you use it please//
+-- \\atleast credits if you use it please// --
+-- \\also firecat/firedawg dont skid it im begging u fr you know coding is hard like why are you even skidding// --
 local Notification = {}
     local tween = game:GetService("TweenService")
     local NotificationFrame = Instance.new("ScreenGui")
