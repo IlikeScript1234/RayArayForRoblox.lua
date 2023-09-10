@@ -36,6 +36,7 @@ Overpower Script With Library And Script for AnyGame
 ```lua
 local Toggle = Section.CreateToggle({
 	Name = "NameHere",
+	Bind = Enum.KeyCode.F, -- u dont need this but it will set to default as none
 	Function = function(callback)
 	if callback then
 		print("kys pls bro")
@@ -50,6 +51,7 @@ local Toggle = Section.CreateToggle({
 ```lua
 local Button = Section.CreateButton({
 	Name = "NameHere",
+	Bind = Enum.KeyCode.F, -- u dont need this but it will set to default as none
 	Function = function()
 		print("kys2")
 	end	
