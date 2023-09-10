@@ -337,7 +337,7 @@ local Library = {}
 						Bbind.TextColor3 = Color3.fromRGB(255, 255, 255)
 						Bbind.TextSize = 14.000
 						Bbind.MouseButton1Click:Connect(function()
-							local selectedKey = args.Bind
+							local selectedKey = args.Bind or nil
 
 							Bbind.MouseButton1Click:Connect(function()
 								changeEnabled = true
@@ -419,7 +419,7 @@ local Library = {}
 						TBind.TextColor3 = Color3.fromRGB(255, 255, 255)
 						TBind.TextSize = 14.000
 						TBind.MouseButton1Click:Connect(function()
-							local selectedKey = nil
+							local selectedKey = args.Bind or nil
 
 							TBind.MouseButton1Click:Connect(function()
 								changeEnabled = true
