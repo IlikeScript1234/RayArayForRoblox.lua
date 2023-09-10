@@ -52,9 +52,14 @@ local Library = {}
 			end
 		end)
     end
+	local arrayui = Instance.new("ScreenGui")
+	arrayui.Name = "arrayGui"
+	arrayui.Parent =  game.CoreGui
+	arrayui.IgnoreGuiInset = true
+
 	local array = Instance.new("Frame")
 	array.Name = "arraylist"
-	array.Parent = game.CoreGui
+	array.Parent = arrayui
 	array.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 	array.BackgroundTransparency = 1.000
 	array.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -104,7 +109,7 @@ local Library = {}
 	end
 
 	function Library.CreateWindow(args)
-		local NotificationEnabled = args.Notify
+		local NotificationEnabled = args.Notify or true
 		local RayAray = Instance.new("ScreenGui")
 		RayAray.Name = "RayAray"
 		RayAray.Parent = game.CoreGui
@@ -121,7 +126,7 @@ local Library = {}
 		Main.Size = UDim2.new(0.276867032, 0, 0.648235321, 0)
 
 		local BlurEffect = Instance.new("Frame")
-		BlurEffect.Visible = args.Blur
+		BlurEffect.Visible = args.Blur or true
 		BlurEffect.Name = "BlurEffect"
 		BlurEffect.Parent = Main
 		BlurEffect.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
@@ -247,7 +252,7 @@ local Library = {}
 				TabName.TextSize = 16.000
 				TabName.TextXAlignment = Enum.TextXAlignment.Left
 				local Sections = {}
-				function Sections.CreateSection()
+				function Sections.CreateSection(args)
 					local sectionInners = Instance.new("Frame")
 					sectionInners.Name = "sectionInners"
 					sectionInners.Parent = Tab
@@ -289,6 +294,8 @@ local Library = {}
 					local UIListLayout = Instance.new("UIListLayout")
 					UIListLayout.Parent = sectionInners
 					UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+					makefolder(args.Name)
+					warn(args.Name.. " Section Has Been Loaded")
 					local Elements = {}
 					
 					function Elements.CreateButton(args)
@@ -330,7 +337,7 @@ local Library = {}
 						Bbind.TextColor3 = Color3.fromRGB(255, 255, 255)
 						Bbind.TextSize = 14.000
 						Bbind.MouseButton1Click:Connect(function()
-							local selectedKey = nil
+							local selectedKey = args.Bind
 
 							Bbind.MouseButton1Click:Connect(function()
 								changeEnabled = true
@@ -566,7 +573,13 @@ local Library = {}
 			end
 		return Tabs
 	end
+	shared.RayAray = true
 	task.spawn(function()
-		Notification.Send("RayAray", "Library Has Been Loaded", 5)
+		if shared.RayAray then
+			Notification.Send("RayAray", "Library Has Been Loaded", 5)
+		else
+			error("RayAray Failed To Loaded")
+			Notification.Send("RayAray", "Library Failed To Loade", 5)
+		end
 	end)
 return Library
