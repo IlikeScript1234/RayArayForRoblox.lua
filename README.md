@@ -27,7 +27,7 @@ Overpower Script With Library And Script for AnyGame
   local Tab = Library.CreateTab({
   	Name = "ThisIsTab" -- you can also change name dont be dumb
   })
-  local Section = Tab.CreateSection()
+  local Section = Tab.CreateSection({Name = "Tab"})
 ```
 
 # Now You Can Create Button, Toggle And Slider For Now
